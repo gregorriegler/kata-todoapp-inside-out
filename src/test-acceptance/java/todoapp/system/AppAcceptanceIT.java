@@ -1,8 +1,10 @@
 package todoapp.system;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 class AppAcceptanceIT extends BaseAcceptanceIT {
@@ -29,10 +31,24 @@ class AppAcceptanceIT extends BaseAcceptanceIT {
 
         get("/tasks").
         then().
-
             statusCode(200).
             contentType(equalTo("application/json")).
-            body("[0].action", equalTo("Buy Milk")); //.log().all();
+            body("[0].action", equalTo("Buy Milk"));
+            //.log().all();
+    }
+
+    @Test
+    @Disabled
+    void createTask() {
+        given().
+            body("{ action:\"Feed Dog\" }").
+            contentType("application/json").
+            post("/tasks").
+        then().
+            statusCode(201).
+            contentType(equalTo("application/json")).
+            body("id", equalTo(1)).
+            body("name", equalTo("Feed Dog"));
     }
 
 }

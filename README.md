@@ -1,14 +1,13 @@
-TODO App Kata - for Inside Out TDD
-----------------------------------
+# TODO App Kata - for Inside Out TDD
 
 This is a simple TodoApp Kata, but you are supposed to test-drive the application
 from the inside out using chicago style TDD.
 
-### Requirements
+## Requirements
 
+- return a list of tasks (WIP)
 - all features should be accessible via an http json api
 - tasks should be persisted in-memory
-- return a list of tasks
 - create a new task
 - delete an existing task
 - make it possible to edit tasks
@@ -18,7 +17,7 @@ from the inside out using chicago style TDD.
 - create role "doer" who should be the only one allowed to mark tasks as done
 - add a simple login using with requestparam `?login=username`
 
-#### Further Requirements in case of getting bored
+### Further Requirements in case of getting bored
 
 - add priorities to tasks (eg. high, medium, low)
 - creator gets notified when a task was completed

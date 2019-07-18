@@ -10,6 +10,8 @@ class TaskListTest {
     void shouldListEmptyTasks() {
         var taskList = new TaskList();
         assertThat(taskList.isEmpty()).isTrue();
+        assertThat(taskList.getFirstTask()).isEmpty();
+        assertThat(taskList.get(0)).isEmpty();
     }
 
     @Test

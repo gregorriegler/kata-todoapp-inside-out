@@ -26,6 +26,9 @@ public class TaskList {
     }
 
     public Optional<Task> get(int index) {
+        if(index >= tasks.size()) {
+            return Optional.empty();
+        }
         return Optional.of(tasks.get(index));
     }
 

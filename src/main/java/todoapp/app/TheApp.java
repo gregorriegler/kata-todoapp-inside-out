@@ -14,12 +14,14 @@ public class TheApp {
         return repository.find();
     }
 
-    public void create(String action) {
+    public int create(String action) {
         TaskList tasks = repository.find();
 
         Task newTask = new Task(action);
         TaskList newTasks = tasks.add(newTask);
 
         repository.store(newTasks);
+
+        return newTasks.size();
     }
 }

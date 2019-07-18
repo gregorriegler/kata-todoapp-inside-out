@@ -27,10 +27,10 @@ class TheAppTest {
         repository.store(storedTaskList);
 
         var theApp = new TheApp(repository);
-        theApp.create("Buy Milk");
+        int indexCreated = theApp.create("Buy Milk");
 
         // want verify(repository.store(newTaskList)
-        Optional<Task> firstTask = repository.find().get(0);
+        Optional<Task> firstTask = repository.find().get(indexCreated-1);
         assertThat(firstTask).contains(new Task("Buy Milk"));
     }
 

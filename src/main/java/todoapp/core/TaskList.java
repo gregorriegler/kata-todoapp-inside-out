@@ -33,6 +33,10 @@ public class TaskList {
         return new TaskList(append(this.tasks, task));
     }
 
+    public int size() {
+        return tasks.size();
+    }
+
     public void forEach(Consumer<Task> consumer) {
         tasks.forEach(consumer);
     }

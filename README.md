@@ -6,9 +6,9 @@ from the inside out using chicago style TDD.
 ## Requirements
 
 - return a list of tasks (WIP)
+- create a new task (WIP)
 - all features should be accessible via an http json api
 - tasks should be persisted in-memory
-- create a new task (WIP)
 - delete an existing task
 - make it possible to edit tasks
 - make it possible to mark task as done

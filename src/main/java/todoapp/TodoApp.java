@@ -13,7 +13,11 @@ public class TodoApp {
 
     private static final String INTERNAL_SERVER_ERROR = "Internal server error.";
 
-    private Routes routes = new Routes();
+    private final FrontController frontController;
+
+    public TodoApp(FrontController frontController) {
+        this.frontController = frontController;
+    }
 
     public void start() {
         start(8080);
@@ -23,7 +27,7 @@ public class TodoApp {
         port(port);
         enableCORS();
         setLog();
-        routes.create();
+        frontController.create();
         configureInternalServerError();
     }
 

@@ -5,7 +5,7 @@ from the inside out using chicago style TDD.
 
 ## Requirements
 
-- return a list of tasks (WIP)
+- return a list of tasks (DONE)
 - create a new task (WIP)
 - all features should be accessible via an http json api
 - tasks should be persisted in-memory

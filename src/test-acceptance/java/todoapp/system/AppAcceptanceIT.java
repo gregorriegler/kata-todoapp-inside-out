@@ -23,4 +23,16 @@ class AppAcceptanceIT extends BaseAcceptanceIT {
             body(equalTo("[]"));
     }
 
+    @Test
+    void getSingleTaskInList() {
+        givenTask("Buy Milk");
+
+        get("/tasks").
+        then().
+
+            statusCode(200).
+            contentType(equalTo("application/json")).
+            body("[0].action", equalTo("Buy Milk")); //.log().all();
+    }
+
 }

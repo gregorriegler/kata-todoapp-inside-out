@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Task {
 
-    private final String action;
+    public final String action;
 
     public Task(String action) {
         this.action = action;

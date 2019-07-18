@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public class TaskList {
 
@@ -30,6 +31,10 @@ public class TaskList {
 
     public TaskList add(Task task) {
         return new TaskList(append(this.tasks, task));
+    }
+
+    public void forEach(Consumer<Task> consumer) {
+        tasks.forEach(consumer);
     }
 
     private static <T> List<T> append(List<T> list, T element) {

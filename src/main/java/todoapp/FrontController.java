@@ -1,8 +1,11 @@
 package todoapp;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import spark.Filter;
 import todoapp.app.TaskRepository;
+import todoapp.core.Task;
+import todoapp.core.TaskList;
 
 import static spark.Spark.after;
 import static spark.Spark.get;
@@ -22,7 +25,10 @@ public class FrontController {
 
         get("/tasks", (req, res) -> {
             res.status(200);
-            return "[]";
+            TaskList taskList = repository.find();
+            JSONArray jsonArray = new JSONArray();
+            taskList.forEach(t -> jsonArray.put(jsonOf(t)));
+            return jsonArray;
         });
 
         get("*", (req, res) -> {
@@ -31,5 +37,10 @@ public class FrontController {
         });
 
         after((Filter) (req, res) -> res.header("content-type", "application/json"));
+    }
+
+    private JSONObject jsonOf(Task task) {
+        return new JSONObject()
+            .put("action", task.action);
     }
 }

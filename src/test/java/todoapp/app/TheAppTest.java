@@ -31,7 +31,7 @@ class TheAppTest {
         TaskPosition indexCreated = theApp.create("Buy Milk");
 
         // want verify(repository.store(newTaskList)
-        Optional<Task> firstTask = repository.find().get(indexCreated.index - 1);
+        Optional<Task> firstTask = repository.getTaskByPosition(indexCreated);
         assertThat(firstTask).contains(new Task("Buy Milk"));
     }
 

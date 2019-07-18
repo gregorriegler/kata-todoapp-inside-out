@@ -8,7 +8,7 @@ class TaskListTest {
 
     @Test
     void shouldListEmptyTasks() {
-        var taskList = new TaskList();
+        var taskList = createTaskList();
 
         assertThat(taskList.isEmpty()).isTrue();
         assertThat(taskList.get(0)).isEmpty();
@@ -17,7 +17,7 @@ class TaskListTest {
     @Test
     void shouldListSingleTask() {
         var givenTask = new Task("Buy Milk");
-        var givenTasks = new TaskList(givenTask);
+        var givenTasks = createTaskList(givenTask);
 
         assertThat(givenTasks.isEmpty()).isFalse();
         assertThat(givenTasks.get(0)).contains(givenTask);
@@ -27,7 +27,7 @@ class TaskListTest {
     void shouldListOfTwoTasks() {
         var taskA = new Task("Buy Milk");
         var taskB = new Task("Feed Dog");
-        var givenTasks = new TaskList(taskA, taskB);
+        var givenTasks = createTaskList(taskA, taskB);
 
         assertThat(givenTasks.isEmpty()).isFalse();
         assertThat(givenTasks.get(0)).contains(taskA);
@@ -36,7 +36,7 @@ class TaskListTest {
 
     @Test
     void shouldAddTaskToList() {
-        var taskList = new TaskList();
+        var taskList = createTaskList();
 
         var newTask = new Task("Buy Milk");
         taskList = taskList.add(newTask);
@@ -44,6 +44,10 @@ class TaskListTest {
         assertThat(taskList.get(0)).contains(newTask);
     }
 
+    private TaskList createTaskList(Task... tasks) {
+        return new TaskList(tasks); // Signature Shielding
+    }
+    
     /*
     - delete an existing task
     - make it possible to edit tasks

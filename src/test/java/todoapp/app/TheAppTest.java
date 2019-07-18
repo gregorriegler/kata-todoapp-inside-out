@@ -16,7 +16,6 @@ class TheAppTest {
         var storedTaskList = new TaskList(TASK);
         repository.store(storedTaskList);
 
-        var theApp = new TheApp(repository);
         var taskList = theApp.show();
 
         assertThat(taskList).isEqualTo(storedTaskList);
@@ -24,10 +23,8 @@ class TheAppTest {
 
     @Test
     void shouldAddNewTaskToPersistence() {
-        var storedTaskList = new TaskList();
-        repository.store(storedTaskList);
+        repository.store(new TaskList());
 
-        var theApp = new TheApp(repository);
         TaskPosition indexCreated = theApp.create("Buy Milk");
 
         // want verify(repository.store(newTaskList)
@@ -39,6 +36,7 @@ class TheAppTest {
     final Task TASK = new Task("irrelevant");
 
     FakeTaskRepository repository = new FakeTaskRepository();
+    TheApp theApp = new TheApp(repository);
 
 }
 

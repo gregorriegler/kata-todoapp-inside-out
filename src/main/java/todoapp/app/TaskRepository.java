@@ -11,5 +11,5 @@ public interface TaskRepository {
 
     void store(TaskList tasks);
 
-    Optional<Task> getTaskByPosition(TaskPosition position);
+    Optional<Task> getTaskByPosition(TaskPosition position); // todo taskpos maybe inner class of tasklist
 }

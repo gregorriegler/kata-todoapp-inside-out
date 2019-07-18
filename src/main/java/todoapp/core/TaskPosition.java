@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class TaskPosition {
 
-    public final int index;
+    public final int index; //todo rename to pos
 
     public TaskPosition(int index) {
         this.index = index;

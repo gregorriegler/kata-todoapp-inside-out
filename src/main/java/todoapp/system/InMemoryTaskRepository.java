@@ -23,6 +23,6 @@ public class InMemoryTaskRepository implements TaskRepository {
 
     @Override
     public Optional<Task> getTaskByPosition(TaskPosition position) {
-        return taskList.get(position.index - 1);
+        return taskList.get(position.index - 1); //todo extract
     }
 }

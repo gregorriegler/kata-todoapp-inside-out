@@ -7,7 +7,7 @@ import spark.Spark;
 import static org.eclipse.jetty.http.HttpStatus.NOT_IMPLEMENTED_501;
 import static spark.Spark.*;
 
-public class TodoApp {
+public class TodoApp { // todo rename to todoapp server
 
     private static Logger logger = LoggerFactory.getLogger(TodoApp.class);
 

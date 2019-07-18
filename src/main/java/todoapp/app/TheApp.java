@@ -4,7 +4,7 @@ import todoapp.core.Task;
 import todoapp.core.TaskList;
 import todoapp.core.TaskPosition;
 
-public class TheApp {
+public class TheApp { // todo rename
     private final TaskRepository repository;
 
     public TheApp(TaskRepository repository) {

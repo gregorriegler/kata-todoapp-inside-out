@@ -19,15 +19,15 @@ public class FrontController {
         this.repository = repository;
     }
 
-    public void create() {
-        get("/hello", (req, res) -> {
+    public void create() { // todo rename to routes
+        get("/hello", (req, res) -> { // todo remove
             return new JSONObject().put("hello", "world").toString();
         });
 
         get("/tasks", (req, res) -> {
             res.status(200);
 
-            TaskList taskList = repository.find();
+            TaskList taskList = repository.find(); // todo use "TheApp"
             JSONArray jsonArray = new JSONArray();
             taskList.forEach(task -> jsonArray.put(jsonOf(task)));
 

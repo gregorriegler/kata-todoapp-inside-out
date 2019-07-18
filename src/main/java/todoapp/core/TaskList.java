@@ -29,9 +29,13 @@ public class TaskList {
     }
 
     public TaskList add(Task task) {
-        ArrayList<Task> tasks = new ArrayList<>(this.tasks);
-        tasks.add(task);
-        return new TaskList(tasks);
+        return new TaskList(append(this.tasks, task));
+    }
+
+    private static <T> List<T> append(List<T> list, T element) {
+        List<T> tasks = new ArrayList<>(list);
+        tasks.add(element);
+        return tasks;
     }
 
     @Override

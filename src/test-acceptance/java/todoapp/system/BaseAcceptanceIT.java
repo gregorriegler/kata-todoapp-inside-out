@@ -1,12 +1,9 @@
-package todoapp;
+package todoapp.system;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static io.restassured.RestAssured.get;
-import static org.hamcrest.Matchers.equalTo;
+import todoapp.TodoApp;
 
 abstract public class BaseAcceptanceIT {
 
@@ -20,11 +17,6 @@ abstract public class BaseAcceptanceIT {
         todoApp.start(PORT);
         todoApp.awaitInitialization();
         RestAssured.port = PORT;
-    }
-
-    @Test
-    void getHelloWorld() {
-        get("/hello").then().body("hello", equalTo("world"));
     }
 
     @AfterEach

@@ -29,6 +29,7 @@ public class TodoApp {
 
     public void stop() {
         Spark.stop();
+        Spark.awaitStop();
     }
 
     public void awaitInitialization() {

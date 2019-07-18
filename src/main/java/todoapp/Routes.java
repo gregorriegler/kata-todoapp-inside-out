@@ -11,5 +11,10 @@ public class Routes {
             res.header("content-type", "application/json");
             return new JSONObject().put("hello", "world").toString();
         });
+        get("*", (req, res) -> {
+            res.status(404);
+            return "";
+        });
+
     }
 }

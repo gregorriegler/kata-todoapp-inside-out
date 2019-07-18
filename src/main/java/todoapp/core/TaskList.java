@@ -21,10 +21,6 @@ public class TaskList {
         return tasks.isEmpty();
     }
 
-    public Optional<Task> getFirstTask() {
-        return get(0);
-    }
-
     public Optional<Task> get(int index) {
         if(index >= tasks.size()) {
             return Optional.empty();

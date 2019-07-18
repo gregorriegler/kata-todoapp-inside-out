@@ -9,8 +9,8 @@ class TaskListTest {
     @Test
     void shouldListEmptyTasks() {
         var taskList = new TaskList();
+
         assertThat(taskList.isEmpty()).isTrue();
-        assertThat(taskList.getFirstTask()).isEmpty();
         assertThat(taskList.get(0)).isEmpty();
     }
 
@@ -20,7 +20,7 @@ class TaskListTest {
         var givenTasks = new TaskList(givenTask);
 
         assertThat(givenTasks.isEmpty()).isFalse();
-        assertThat(givenTasks.getFirstTask()).contains(givenTask);
+        assertThat(givenTasks.get(0)).contains(givenTask);
     }
 
     @Test
@@ -30,7 +30,7 @@ class TaskListTest {
         var givenTasks = new TaskList(taskA, taskB);
 
         assertThat(givenTasks.isEmpty()).isFalse();
-        assertThat(givenTasks.getFirstTask()).contains(taskA);
+        assertThat(givenTasks.get(0)).contains(taskA);
         assertThat(givenTasks.get(1)).contains(taskB);
     }
 
@@ -41,7 +41,7 @@ class TaskListTest {
         var newTask = new Task("Buy Milk");
         taskList = taskList.add(newTask);
 
-        assertThat(taskList.getFirstTask()).contains(newTask);
+        assertThat(taskList.get(0)).contains(newTask);
     }
 
     /*

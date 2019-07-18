@@ -30,7 +30,7 @@ class TheAppTest {
         theApp.create("Buy Milk");
 
         // want verify(repository.store(newTaskList)
-        Optional<Task> firstTask = repository.find().getFirstTask();
+        Optional<Task> firstTask = repository.find().get(0);
         assertThat(firstTask).contains(new Task("Buy Milk"));
     }
 

@@ -3,6 +3,7 @@ package todoapp.core;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class TaskList {
 
@@ -20,12 +21,12 @@ public class TaskList {
         return tasks.isEmpty();
     }
 
-    public Task getFirstTask() {
-        return tasks.get(0);
+    public Optional<Task> getFirstTask() {
+        return get(0);
     }
 
-    public Task get(int index) {
-        return tasks.get(index);
+    public Optional<Task> get(int index) {
+        return Optional.of(tasks.get(index));
     }
 
     public TaskList add(Task task) {

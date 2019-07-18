@@ -2,6 +2,8 @@ package todoapp.core;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TaskCoreDomainTest {
@@ -22,7 +24,7 @@ class TaskCoreDomainTest {
         var tasks = the.listTasks();
 
         assertThat(tasks.isEmpty()).isFalse();
-        assertThat(tasks.getFirstTask()).isEqualTo(givenTask);
+        assertThat(tasks.getFirstTask()).isEqualTo(Optional.of(givenTask));
     }
 
     @Test
@@ -35,8 +37,8 @@ class TaskCoreDomainTest {
         var tasks = the.listTasks();
 
         assertThat(tasks.isEmpty()).isFalse();
-        assertThat(tasks.getFirstTask()).isEqualTo(taskA);
-        assertThat(tasks.get(1)).isEqualTo(taskB);
+        assertThat(tasks.getFirstTask()).isEqualTo(Optional.of(taskA));
+        assertThat(tasks.get(1)).isEqualTo(Optional.of(taskB));
     }
 
     @Test
@@ -47,7 +49,7 @@ class TaskCoreDomainTest {
         the.addTask(newTask);
 
         var tasks = the.listTasks();
-        assertThat(tasks.getFirstTask()).isEqualTo(newTask);
+        assertThat(tasks.getFirstTask()).isEqualTo(Optional.of(newTask));
     }
 
     /*

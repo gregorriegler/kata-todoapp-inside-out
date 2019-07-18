@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import todoapp.core.Task;
 import todoapp.core.TaskList;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TheAppTest {
@@ -28,8 +30,8 @@ class TheAppTest {
         theApp.create("Buy Milk");
 
         // want verify(repository.store(newTaskList)
-        Task firstTask = repository.find().getFirstTask();
-        assertThat(firstTask).isEqualTo(new Task("Buy Milk"));
+        Optional<Task> firstTask = repository.find().getFirstTask();
+        assertThat(firstTask).contains(new Task("Buy Milk"));
     }
 
 

@@ -22,4 +22,9 @@ public class TaskList {
     public Task get(int index) {
         return tasks.get(index);
     }
+
+    @Override
+    public String toString() {
+        return "TaskList{" + tasks + '}';
+    }
 }

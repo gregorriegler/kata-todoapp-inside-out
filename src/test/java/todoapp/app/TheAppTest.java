@@ -10,7 +10,7 @@ public class TheAppTest {
 
     @Test
     void shouldDisplayTasksFromPersistence() {
-        TaskRepository repository = new FakeTaskRepository();
+        var repository = new FakeTaskRepository();
         TaskList storedTaskList = new TaskList(new Task());
         repository.set(storedTaskList);
 
@@ -24,22 +24,31 @@ public class TheAppTest {
 }
 
 class TheApp {
+    private final TaskRepository repository;
+
     public TheApp(TaskRepository repository) {
+        this.repository = repository;
     }
 
     public TaskList show() {
-        return null;
+        return repository.load();
     }
 }
 
 class FakeTaskRepository implements TaskRepository {
 
-    @Override
-    public void set(TaskList taskList) {
+    private TaskList taskList;
 
+    public void set(TaskList taskList) {
+        this.taskList = taskList;
+    }
+
+    @Override
+    public TaskList load() {
+        return taskList;
     }
 }
 
 interface TaskRepository {
-    void set(TaskList taskList);
+    TaskList load();
 }

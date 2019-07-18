@@ -2,6 +2,7 @@ package todoapp.app;
 
 import todoapp.core.Task;
 import todoapp.core.TaskList;
+import todoapp.core.TaskPosition;
 
 public class TheApp {
     private final TaskRepository repository;
@@ -14,7 +15,7 @@ public class TheApp {
         return repository.find();
     }
 
-    public int create(String action) {
+    public TaskPosition create(String action) {
         TaskList tasks = repository.find();
 
         Task newTask = new Task(action);
@@ -22,6 +23,6 @@ public class TheApp {
 
         repository.store(newTasks);
 
-        return newTasks.size();
+        return new TaskPosition(newTasks.size());
     }
 }

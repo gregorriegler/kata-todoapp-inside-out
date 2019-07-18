@@ -3,6 +3,7 @@ package todoapp.app;
 import org.junit.jupiter.api.Test;
 import todoapp.core.Task;
 import todoapp.core.TaskList;
+import todoapp.core.TaskPosition;
 
 import java.util.Optional;
 
@@ -27,10 +28,10 @@ class TheAppTest {
         repository.store(storedTaskList);
 
         var theApp = new TheApp(repository);
-        int indexCreated = theApp.create("Buy Milk");
+        TaskPosition indexCreated = theApp.create("Buy Milk");
 
         // want verify(repository.store(newTaskList)
-        Optional<Task> firstTask = repository.find().get(indexCreated-1);
+        Optional<Task> firstTask = repository.find().get(indexCreated.index - 1);
         assertThat(firstTask).contains(new Task("Buy Milk"));
     }
 

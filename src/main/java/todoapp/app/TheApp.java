@@ -11,7 +11,6 @@ public class TheApp {
     }
 
     public TaskList show() {
-        //TODO: no TaskCoreDomain here
         return repository.find();
     }
 

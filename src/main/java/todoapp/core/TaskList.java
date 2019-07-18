@@ -9,7 +9,11 @@ public class TaskList {
     private final List<Task> tasks;
 
     public TaskList(Task... tasks) {
-        this.tasks = new ArrayList<>(Arrays.asList(tasks));
+        this(Arrays.asList(tasks));
+    }
+
+    public TaskList(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public boolean isEmpty() {
@@ -24,8 +28,10 @@ public class TaskList {
         return tasks.get(index);
     }
 
-    public void add(Task task) {
+    public TaskList add(Task task) {
+        ArrayList<Task> tasks = new ArrayList<>(this.tasks);
         tasks.add(task);
+        return new TaskList(tasks);
     }
 
     @Override

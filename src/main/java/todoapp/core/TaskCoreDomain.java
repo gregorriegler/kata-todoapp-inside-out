@@ -1,7 +1,7 @@
 package todoapp.core;
 
 class TaskCoreDomain {
-    private final TaskList tasks;
+    private TaskList tasks;
 
     public TaskCoreDomain(TaskList tasks) {
         this.tasks = tasks;
@@ -12,6 +12,6 @@ class TaskCoreDomain {
     }
 
     public void addTask(Task task) {
-        tasks.add(task);
+        tasks = tasks.add(task);
     }
 }

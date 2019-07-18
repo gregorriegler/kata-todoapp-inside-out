@@ -31,7 +31,8 @@ public class TheAppTest {
 
         theApp.create("Buy Milk");
 
-        assertThat(storedTaskList.getFirstTask()).isEqualTo(new Task("Buy Milk"));
+        // want verify(repository.store(newTaskList)
+        assertThat(repository.load().getFirstTask()).isEqualTo(new Task("Buy Milk"));
     }
 
 }
@@ -50,7 +51,10 @@ class TheApp {
 
     public void create(String action) {
         // this is not what we want
-        repository.load().add(new Task(action));
+
+        TaskList load = repository.load();
+        TaskList add = load.add(new Task(action));
+        repository.store(add);
     }
 }
 
@@ -66,8 +70,15 @@ class FakeTaskRepository implements TaskRepository {
     public TaskList load() {
         return taskList;
     }
+
+    @Override
+    public void store(TaskList taskList) {
+        this.taskList = taskList;
+    }
 }
 
 interface TaskRepository {
     TaskList load();
+
+    void store(TaskList add);
 }

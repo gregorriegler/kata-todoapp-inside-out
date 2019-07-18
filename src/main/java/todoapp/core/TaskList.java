@@ -3,7 +3,7 @@ package todoapp.core;
 import java.util.Arrays;
 import java.util.List;
 
-class TaskList {
+public class TaskList {
 
     private final List<Task> tasks;
 

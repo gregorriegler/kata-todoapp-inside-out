@@ -1,5 +1,5 @@
 package todoapp.core;
 
-class Task {
+public class Task {
 
 }

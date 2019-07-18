@@ -8,6 +8,7 @@ import todoapp.app.TheApp;
 import todoapp.core.Task;
 import todoapp.core.TaskList;
 import todoapp.core.TaskPosition;
+import todoapp.system.InMemoryTaskRepository;
 
 import static spark.Spark.*;
 
@@ -15,14 +16,15 @@ public class FrontController {
 
     private final TaskRepository repository;
 
+    public FrontController() { // Parameterless Instantiation
+        this(new InMemoryTaskRepository()); 
+    }
+
     public FrontController(TaskRepository repository) {
         this.repository = repository;
     }
 
     public void create() { // todo rename to routes
-        get("/hello", (req, res) -> { // todo remove
-            return new JSONObject().put("hello", "world").toString();
-        });
 
         get("/tasks", (req, res) -> {
             res.status(200);
@@ -53,6 +55,8 @@ public class FrontController {
         after((Filter) (req, res) -> res.header("content-type", "application/json"));
     }
 
+    // TODO move JSON mapping out to mapper class
+    
     private JSONObject jsonOf(int index) {
         return new JSONObject().put("pos", index);
     }

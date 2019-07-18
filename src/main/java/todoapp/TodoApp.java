@@ -9,11 +9,15 @@ import static spark.Spark.*;
 
 public class TodoApp { // todo rename to todoapp server
 
-    private static Logger logger = LoggerFactory.getLogger(TodoApp.class);
+    private static final Logger logger = LoggerFactory.getLogger(TodoApp.class);
 
     private static final String INTERNAL_SERVER_ERROR = "Internal server error.";
 
     private final FrontController frontController;
+
+    public TodoApp() { // Parameterless Instantiation
+        this(new FrontController()); // Zero-Impact Instantiation
+    }
 
     public TodoApp(FrontController frontController) {
         this.frontController = frontController;

@@ -1,6 +1,5 @@
 package todoapp.system;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.get;
@@ -38,7 +37,6 @@ class AppAcceptanceIT extends BaseAcceptanceIT {
     }
 
     @Test
-    @Disabled
     void createTask() {
         given().
             body("{ action:\"Feed Dog\" }").
@@ -47,8 +45,7 @@ class AppAcceptanceIT extends BaseAcceptanceIT {
         then().
             statusCode(201).
             contentType(equalTo("application/json")).
-            body("id", equalTo(1)).
-            body("name", equalTo("Feed Dog"));
+            body("pos", equalTo(1));
     }
 
 }

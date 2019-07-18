@@ -4,8 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import spark.Filter;
 import todoapp.app.TaskRepository;
+import todoapp.app.TheApp;
 import todoapp.core.Task;
 import todoapp.core.TaskList;
+import todoapp.core.TaskPosition;
 
 import static spark.Spark.*;
 
@@ -36,12 +38,11 @@ public class FrontController {
             JSONObject incomingJson = new JSONObject(req.body());
             String action = incomingJson.getString("action");
 
-            Task task = new Task(action);
-            TaskList newList = repository.find().add(task);
-            repository.store(newList);
+            TheApp app = new TheApp(repository);
+            TaskPosition position = app.create(action);
 
             res.status(201);
-            return jsonOf(task);
+            return jsonOf(position.index);
         });
 
         get("*", (req, res) -> {
@@ -50,6 +51,10 @@ public class FrontController {
         });
 
         after((Filter) (req, res) -> res.header("content-type", "application/json"));
+    }
+
+    private JSONObject jsonOf(int index) {
+        return new JSONObject().put("pos", index);
     }
 
     private JSONObject jsonOf(Task task) {

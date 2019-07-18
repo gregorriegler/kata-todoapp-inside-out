@@ -21,6 +21,19 @@ public class TheAppTest {
         assertThat(taskList).isEqualTo(storedTaskList);
     }
 
+    @Test
+    void shouldAddNewTaskToPersistence() {
+        var repository = new FakeTaskRepository();
+        TaskList storedTaskList = new TaskList();
+        repository.set(storedTaskList);
+
+        var theApp = new TheApp(repository);
+
+        theApp.create("Buy Milk");
+
+        assertThat(storedTaskList.getFirstTask()).isEqualTo(new Task("Buy Milk"));
+    }
+
 }
 
 class TheApp {
@@ -33,6 +46,11 @@ class TheApp {
     public TaskList show() {
         //TODO: no TaskCoreDomain here
         return repository.load();
+    }
+
+    public void create(String action) {
+        // this is not what we want
+        repository.load().add(new Task(action));
     }
 }
 

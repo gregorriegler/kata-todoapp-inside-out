@@ -3,6 +3,7 @@ package todoapp.system;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.get;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 class AppAcceptanceIT extends BaseAcceptanceIT {
 
@@ -13,13 +14,13 @@ class AppAcceptanceIT extends BaseAcceptanceIT {
             statusCode(404);
     }
 
-//   @Test
-//    void getEmptyList() {
-//        get("/tasks").
-//        then().
-//            contentType(equalTo("application/json")).
-//            statusCode(200).
-//            body(equalTo("[]"));
-//    }
+    @Test
+    void getEmptyList() {
+        get("/tasks").
+        then().
+            statusCode(200).
+            contentType(equalTo("application/json")).
+            body(equalTo("[]"));
+    }
 
 }

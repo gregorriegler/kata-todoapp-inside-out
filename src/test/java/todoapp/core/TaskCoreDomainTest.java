@@ -15,7 +15,7 @@ class TaskCoreDomainTest {
 
     @Test
     void shouldListSingleTask() {
-        var givenTask = new Task();
+        var givenTask = new Task("Buy Milk");
         var givenTasks = new TaskList(givenTask);
 
         var the = new TaskCoreDomain(givenTasks);
@@ -27,8 +27,8 @@ class TaskCoreDomainTest {
 
     @Test
     void shouldListOfTwoTasks() {
-        var taskA = new Task();
-        var taskB = new Task();
+        var taskA = new Task("Buy Milk");
+        var taskB = new Task("Feed Dog");
         var givenTasks = new TaskList(taskA, taskB);
 
         var the = new TaskCoreDomain(givenTasks);
@@ -39,8 +39,22 @@ class TaskCoreDomainTest {
         assertThat(tasks.get(1)).isEqualTo(taskB);
     }
 
+    @Test
+    void shouldAddTaskToList() {
+        var the = new TaskCoreDomain(new TaskList());
+
+        var newTask = new Task("Buy Milk");
+        the.addTask(newTask);
+
+        var tasks = the.listTasks();
+        assertThat(tasks.getFirstTask()).isEqualTo(newTask);
+    }
+
     /*
     - create a new task
+
+    - refactor task by index to optional
+
     - delete an existing task
     - make it possible to edit tasks
     - make it possible to mark task as done

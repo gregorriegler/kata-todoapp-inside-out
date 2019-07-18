@@ -1,5 +1,6 @@
 package todoapp.core;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class TaskList {
     private final List<Task> tasks;
 
     public TaskList(Task... tasks) {
-        this.tasks = Arrays.asList(tasks);
+        this.tasks = new ArrayList<>(Arrays.asList(tasks));
     }
 
     public boolean isEmpty() {
@@ -21,6 +22,10 @@ public class TaskList {
 
     public Task get(int index) {
         return tasks.get(index);
+    }
+
+    public void add(Task task) {
+        tasks.add(task);
     }
 
     @Override

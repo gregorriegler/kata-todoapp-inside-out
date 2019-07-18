@@ -11,7 +11,7 @@ public class TheAppTest {
     @Test
     void shouldDisplayTasksFromPersistence() {
         var repository = new FakeTaskRepository();
-        TaskList storedTaskList = new TaskList(new Task());
+        TaskList storedTaskList = new TaskList(new Task("irrelevant"));
         repository.set(storedTaskList);
 
         var theApp = new TheApp(repository);
@@ -31,6 +31,7 @@ class TheApp {
     }
 
     public TaskList show() {
+        //TODO: no TaskCoreDomain here
         return repository.load();
     }
 }

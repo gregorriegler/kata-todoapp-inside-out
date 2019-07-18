@@ -10,4 +10,8 @@ class TaskCoreDomain {
     public TaskList listTasks() {
         return tasks;
     }
+
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
 }

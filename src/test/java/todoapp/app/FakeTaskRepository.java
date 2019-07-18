@@ -16,12 +16,13 @@ class FakeTaskRepository implements TaskRepository {
     }
 
     @Override
+    public Optional<Task> getTaskByPosition(TaskPosition position) {
+        return taskList.get(position.index - 1);
+    }
+
+    @Override
     public void store(TaskList tasks) {
         this.taskList = tasks;
     }
 
-    @Override
-    public Optional<Task> getTaskByPosition(TaskPosition position) {
-        return taskList.get(position.index - 1);
-    }
 }

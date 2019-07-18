@@ -2,6 +2,9 @@ package todoapp.core;
 
 import java.util.Objects;
 
+/**
+ * This is a value object. 
+ */
 public class Task {
 
     public final String action;

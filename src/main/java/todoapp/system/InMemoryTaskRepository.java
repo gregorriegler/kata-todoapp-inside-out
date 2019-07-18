@@ -7,6 +7,9 @@ import todoapp.core.TaskPosition;
 
 import java.util.Optional;
 
+/**
+ * An <b>Infrastructure Wrappers</b>.
+ */
 public class InMemoryTaskRepository implements TaskRepository {
 
     private TaskList taskList = new TaskList();
@@ -17,12 +20,13 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
+    public Optional<Task> getTaskByPosition(TaskPosition position) {
+        return taskList.get(position.index - 1); //todo extract
+    }
+    
+    @Override
     public void store(TaskList tasks) {
         this.taskList = tasks;
     }
 
-    @Override
-    public Optional<Task> getTaskByPosition(TaskPosition position) {
-        return taskList.get(position.index - 1); //todo extract
-    }
 }

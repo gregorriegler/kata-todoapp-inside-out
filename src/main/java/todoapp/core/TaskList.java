@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+/**
+ * Main logic with <b>Easily-Visible Behaviour</b> because of pure functions. 
+ */
 public class TaskList {
 
     private final List<Task> tasks;

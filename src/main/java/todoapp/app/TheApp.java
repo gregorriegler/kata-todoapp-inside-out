@@ -4,6 +4,9 @@ import todoapp.core.Task;
 import todoapp.core.TaskList;
 import todoapp.core.TaskPosition;
 
+/**
+ * This is the application layer of the <b>A-Frame Architecture</b>. It uses <b>Logic Sandwich</b>.
+ */
 public class TheApp { // todo rename
     private final TaskRepository repository;
 

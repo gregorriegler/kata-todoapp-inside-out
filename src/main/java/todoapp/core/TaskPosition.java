@@ -2,6 +2,9 @@ package todoapp.core;
 
 import java.util.Objects;
 
+/**
+ * This is a value object. 
+ */
 public class TaskPosition {
 
     public final int index; //todo rename to pos

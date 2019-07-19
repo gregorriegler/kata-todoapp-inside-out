@@ -6,10 +6,11 @@ from the inside out using chicago style TDD.
 ## Requirements
 
 - return a list of tasks (DONE)
-- create a new task (WIP)
-- all features should be accessible via an http json api
-- tasks should be persisted in-memory
+- create a new task (DONE)
+- all features should be accessible via an http json api (infrastructure DONE)
 - delete an existing task
+
+- tasks should be persisted in-memory
 - make it possible to edit tasks
 - make it possible to mark task as done
 - register user with username

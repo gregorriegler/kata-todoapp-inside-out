@@ -2,6 +2,7 @@ package todoapp.core;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -42,12 +43,6 @@ public class TaskList {
         return new TaskList(remove(this.tasks, position.asIndex()));
     }
 
-    private static <T> List<T> remove(List<T> list, int index) {
-        List<T> tasks = new ArrayList<>(list);
-        tasks.remove(index);
-        return tasks;
-    }
-
     public int size() {
         return tasks.size();
     }
@@ -57,9 +52,17 @@ public class TaskList {
     }
 
     private static <T> List<T> append(List<T> list, T element) {
-        List<T> tasks = new ArrayList<>(list);
-        tasks.add(element);
-        return tasks;
+        return mutate(list, newList -> newList.add(element));
+    }
+
+    private static <T> List<T> remove(List<T> list, int index) {
+        return mutate(list, newList -> newList.remove(index));
+    }
+
+    private static <T> List<T> mutate(List<T> list, Consumer<List<T>> operation) {
+        List<T> newList = new ArrayList<>(list);
+        operation.accept(newList);
+        return Collections.unmodifiableList(newList);
     }
 
     @Override

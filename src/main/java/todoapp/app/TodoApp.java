@@ -22,20 +22,22 @@ public class TodoApp {
     public TaskList.Position create(String action) {
         TaskList tasks = repository.find();
 
-        Task newTask = new Task(action);
+        var newTask = new Task(action);
         TaskList newTasks = tasks.add(newTask);
+        var createdPosition = new TaskList.Position(newTasks.size());
 
         repository.store(newTasks);
-
-        return new TaskList.Position(newTasks.size());
+        return createdPosition;
     }
 
     public Optional<Task> remove(TaskList.Position position) {
         TaskList list = repository.find();
 
         var result = list.remove(position);
-        repository.store(result.first);
+        TaskList newTasks = result.first;
+        Optional<Task> task = result.second;
 
-        return result.second;
+        repository.store(newTasks);
+        return task;
     }
 }

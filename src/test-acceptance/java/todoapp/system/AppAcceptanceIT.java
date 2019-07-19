@@ -48,4 +48,16 @@ class AppAcceptanceIT extends BaseAcceptanceIT {
             body("pos", equalTo(1));
     }
 
+    @Test
+    void removeTask() {
+        givenTask("Buy Milk");
+
+        given().
+            delete("/tasks/1").
+        then().
+            statusCode(200).
+            contentType(equalTo("application/json")).
+            body("action", equalTo("Buy Milk"));
+    }
+
 }

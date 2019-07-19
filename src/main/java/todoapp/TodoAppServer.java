@@ -7,19 +7,19 @@ import spark.Spark;
 import static org.eclipse.jetty.http.HttpStatus.NOT_IMPLEMENTED_501;
 import static spark.Spark.*;
 
-public class TodoApp { // todo rename to todoapp server
+public class TodoAppServer {
 
-    private static final Logger logger = LoggerFactory.getLogger(TodoApp.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TodoAppServer.class);
 
     private static final String INTERNAL_SERVER_ERROR = "Internal server error.";
 
     private final FrontController frontController;
 
-    public TodoApp() { // Parameterless Instantiation
+    public TodoAppServer() { // Parameterless Instantiation
         this(new FrontController()); // Zero-Impact Instantiation
     }
 
-    public TodoApp(FrontController frontController) {
+    public TodoAppServer(FrontController frontController) {
         this.frontController = frontController;
     }
 
@@ -47,7 +47,7 @@ public class TodoApp { // todo rename to todoapp server
     private void configureInternalServerError() {
         internalServerError((req, res) -> {
             res.status(NOT_IMPLEMENTED_501);
-            logger.error(INTERNAL_SERVER_ERROR + ": " + req.pathInfo());
+            LOG.error(INTERNAL_SERVER_ERROR + ": " + req.pathInfo());
             return INTERNAL_SERVER_ERROR;
         });
     }
@@ -63,7 +63,7 @@ public class TodoApp { // todo rename to todoapp server
 
     private void setLog() {
         before((request, response) -> {
-            logger.info("URL request: " + request.requestMethod() + " " + request.uri() + " - headers: " + request.headers());
+            LOG.info("URL request: " + request.requestMethod() + " " + request.uri() + " - headers: " + request.headers());
         });
     }
 

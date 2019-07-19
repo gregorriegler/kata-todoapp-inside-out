@@ -4,7 +4,7 @@ import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import todoapp.FrontController;
-import todoapp.TodoApp;
+import todoapp.TodoAppServer;
 import todoapp.core.Task;
 import todoapp.core.TaskList;
 
@@ -12,21 +12,21 @@ abstract public class BaseAcceptanceIT {
 
     public static final int PORT = 4321;
 
-    private TodoApp todoApp;
+    private TodoAppServer todoAppServer;
     private InMemoryTaskRepository repository;
 
     @BeforeEach
     void setUp() {
         repository = new InMemoryTaskRepository();
-        todoApp = new TodoApp(new FrontController(repository));
-        todoApp.start(PORT);
-        todoApp.awaitInitialization();
+        todoAppServer = new TodoAppServer(new FrontController(repository));
+        todoAppServer.start(PORT);
+        todoAppServer.awaitInitialization();
         RestAssured.port = PORT;
     }
 
     @AfterEach
     void tearDown() {
-        todoApp.stop();
+        todoAppServer.stop();
     }
 
     protected void givenTask(String action) {

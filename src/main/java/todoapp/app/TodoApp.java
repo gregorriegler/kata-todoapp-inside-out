@@ -3,6 +3,8 @@ package todoapp.app;
 import todoapp.core.Task;
 import todoapp.core.TaskList;
 
+import java.util.Optional;
+
 /**
  * This is the application layer of the <b>A-Frame Architecture</b>. It uses <b>Logic Sandwich</b>.
  */
@@ -26,5 +28,9 @@ public class TodoApp {
         repository.store(newTasks);
 
         return new TaskList.Position(newTasks.size());
+    }
+
+    public Optional<Task> remove(TaskList.Position position) {
+        return Optional.empty();
     }
 }

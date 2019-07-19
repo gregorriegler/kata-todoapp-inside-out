@@ -1,5 +1,6 @@
 package todoapp.app;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import todoapp.core.Task;
 import todoapp.core.TaskList;
@@ -8,11 +9,11 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class TheAppTest {
+class TodoAppTest {
 
     @Test
     void shouldDisplayTasksFromPersistence() {
-        var storedTaskList = new TaskList(TASK);
+        var storedTaskList = new TaskList(someTask);
         repository.store(storedTaskList);
 
         var taskList = todoApp.show();
@@ -31,11 +32,35 @@ class TheAppTest {
         assertThat(firstTask).contains(new Task("Buy Milk"));
     }
 
+    @Test
+    void shouldReturnRemovedTask() {
+        var storedTaskList = new TaskList(someTask);
+        repository.store(storedTaskList);
 
-    final Task TASK = new Task("irrelevant");
+        Optional<Task> removed = todoApp.remove(new TaskList.Position(1));
+
+        assertThat(removed).contains(someTask);
+    }
+
+    @Test
+    @Disabled("too many tests")
+    void shouldRemoveExistingTaskFromPersistence() {
+        var storedTaskList = new TaskList(someTask);
+        repository.store(storedTaskList);
+
+        todoApp.remove(new TaskList.Position(1));
+
+        TaskList persistedList = repository.find();
+        assertThat(persistedList.isEmpty()).isTrue();
+    }
+
+    // TODO custom matcher
+
+    final Task someTask = new Task("irrelevant");
 
     FakeTaskRepository repository = new FakeTaskRepository();
     TodoApp todoApp = new TodoApp(repository);
 
+    // TODO remove non existing
 }
 

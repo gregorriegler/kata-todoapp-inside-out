@@ -62,11 +62,17 @@ public class FrontController {
     }
 
     private Object removeTask(Request req, Response res) {
-        String pos = req.params("pos");
-        int i = Integer.parseInt(pos);
+        TaskList.Position position = positionFrom(req);
 
-        Optional<Task> task = app.remove(new TaskList.Position(i));
-        return task.map(t -> jsonMapper.toJson(t)).orElse(new JSONObject());
+        Optional<Task> result = app.remove(position);
+
+        JSONObject json = result.map(jsonMapper::toJson).orElse(new JSONObject());
+        return json;
+    }
+
+    private TaskList.Position positionFrom(Request req) {
+        int position = Integer.parseInt(req.params("pos"));
+        return new TaskList.Position(position);
     }
 
     private Object notFound(Request req, Response res) {

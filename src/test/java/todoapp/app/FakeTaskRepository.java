@@ -2,7 +2,6 @@ package todoapp.app;
 
 import todoapp.core.Task;
 import todoapp.core.TaskList;
-import todoapp.core.TaskPosition;
 
 import java.util.Optional;
 
@@ -16,8 +15,8 @@ class FakeTaskRepository implements TaskRepository {
     }
 
     @Override
-    public Optional<Task> getTaskByPosition(TaskPosition position) {
-        return taskList.get(position.index - 1);
+    public Optional<Task> getTaskByPosition(TaskList.Position position) {
+        return taskList.get(position);
     }
 
     @Override

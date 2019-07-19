@@ -3,12 +3,11 @@ package todoapp.system;
 import todoapp.app.TaskRepository;
 import todoapp.core.Task;
 import todoapp.core.TaskList;
-import todoapp.core.TaskPosition;
 
 import java.util.Optional;
 
 /**
- * An <b>Infrastructure Wrappers</b>.
+ * An <b>Infrastructure Wrappers</b>, in our situation this is the infrastructure.
  */
 public class InMemoryTaskRepository implements TaskRepository {
 
@@ -20,10 +19,10 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public Optional<Task> getTaskByPosition(TaskPosition position) {
-        return taskList.get(position.index - 1); //todo extract
+    public Optional<Task> getTaskByPosition(TaskList.Position position) {
+        return taskList.get(position);
     }
-    
+
     @Override
     public void store(TaskList tasks) {
         this.taskList = tasks;

@@ -2,15 +2,14 @@ package todoapp.app;
 
 import todoapp.core.Task;
 import todoapp.core.TaskList;
-import todoapp.core.TaskPosition;
 
 /**
  * This is the application layer of the <b>A-Frame Architecture</b>. It uses <b>Logic Sandwich</b>.
  */
-public class TheApp { // todo rename
+public class TodoApp {
     private final TaskRepository repository;
 
-    public TheApp(TaskRepository repository) {
+    public TodoApp(TaskRepository repository) {
         this.repository = repository;
     }
 
@@ -18,7 +17,7 @@ public class TheApp { // todo rename
         return repository.find();
     }
 
-    public TaskPosition create(String action) {
+    public TaskList.Position create(String action) {
         TaskList tasks = repository.find();
 
         Task newTask = new Task(action);
@@ -26,6 +25,6 @@ public class TheApp { // todo rename
 
         repository.store(newTasks);
 
-        return new TaskPosition(newTasks.size());
+        return new TaskList.Position(newTasks.size());
     }
 }

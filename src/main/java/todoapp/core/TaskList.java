@@ -3,6 +3,7 @@ package todoapp.core;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -25,7 +26,11 @@ public class TaskList {
         return tasks.isEmpty();
     }
 
-    public Optional<Task> get(int index) {
+    public Optional<Task> get(Position position) {
+        return get(position.asIndex());
+    }
+
+    Optional<Task> get(int index) {
         if(index >= tasks.size()) {
             return Optional.empty();
         }
@@ -53,5 +58,43 @@ public class TaskList {
     @Override
     public String toString() {
         return "TaskList{" + tasks + '}';
+    }
+
+    /**
+     * This is a value object.
+     */
+    public static class Position {
+
+        public final int position;
+
+        public Position(int position) {
+            this.position = position;
+        }
+
+        public int asIndex() {
+            return position - 1;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
+            Position that = (Position) obj;
+            return position == that.position;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(position);
+        }
+
+        @Override
+        public String toString() {
+            return "" + position;
+        }
     }
 }

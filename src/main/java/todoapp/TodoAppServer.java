@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import spark.Spark;
 
 import static org.eclipse.jetty.http.HttpStatus.NOT_IMPLEMENTED_501;
-import static spark.Spark.*;
+import static spark.Spark.before;
+import static spark.Spark.internalServerError;
+import static spark.Spark.port;
 
 public class TodoAppServer {
 

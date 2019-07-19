@@ -3,7 +3,6 @@ package todoapp.app;
 import org.junit.jupiter.api.Test;
 import todoapp.core.Task;
 import todoapp.core.TaskList;
-import todoapp.core.TaskPosition;
 
 import java.util.Optional;
 
@@ -16,7 +15,7 @@ class TheAppTest {
         var storedTaskList = new TaskList(TASK);
         repository.store(storedTaskList);
 
-        var taskList = theApp.show();
+        var taskList = todoApp.show();
 
         assertThat(taskList).isEqualTo(storedTaskList);
     }
@@ -25,7 +24,7 @@ class TheAppTest {
     void shouldAddNewTaskToPersistence() {
         repository.store(new TaskList());
 
-        TaskPosition indexCreated = theApp.create("Buy Milk");
+        TaskList.Position indexCreated = todoApp.create("Buy Milk");
 
         // want verify(repository.store(newTaskList)
         Optional<Task> firstTask = repository.getTaskByPosition(indexCreated);
@@ -36,7 +35,7 @@ class TheAppTest {
     final Task TASK = new Task("irrelevant");
 
     FakeTaskRepository repository = new FakeTaskRepository();
-    TheApp theApp = new TheApp(repository);
+    TodoApp todoApp = new TodoApp(repository);
 
 }
 

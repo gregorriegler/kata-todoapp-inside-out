@@ -4,13 +4,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import spark.Filter;
 import todoapp.app.TaskRepository;
-import todoapp.app.TheApp;
+import todoapp.app.TodoApp;
 import todoapp.core.Task;
 import todoapp.core.TaskList;
-import todoapp.core.TaskPosition;
 import todoapp.system.InMemoryTaskRepository;
 
-import static spark.Spark.*;
+import static spark.Spark.after;
+import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class FrontController {
 
@@ -40,11 +41,11 @@ public class FrontController {
             JSONObject incomingJson = new JSONObject(req.body());
             String action = incomingJson.getString("action");
 
-            TheApp app = new TheApp(repository);
-            TaskPosition position = app.create(action);
+            TodoApp app = new TodoApp(repository);
+            TaskList.Position position = app.create(action);
 
             res.status(201);
-            return jsonOf(position.index);
+            return jsonOf(position.position);
         });
 
         get("*", (req, res) -> {

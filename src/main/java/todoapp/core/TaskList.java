@@ -39,8 +39,13 @@ public class TaskList {
     }
 
     public TaskList remove(Position position) {
-        return null
-            ;
+        return new TaskList(remove(this.tasks, position.asIndex()));
+    }
+
+    private static <T> List<T> remove(List<T> list, int index) {
+        List<T> tasks = new ArrayList<>(list);
+        tasks.remove(index);
+        return tasks;
     }
 
     public int size() {

@@ -33,7 +33,7 @@ public class TodoAppServer {
         port(port);
         enableCORS();
         setLog();
-        frontController.create();
+        frontController.initRoutes();
         configureInternalServerError();
     }
 

@@ -6,9 +6,9 @@ import spark.Request;
 import spark.Response;
 import todoapp.app.TaskRepository;
 import todoapp.app.TodoApp;
-import todoapp.core.Task;
 import todoapp.core.TaskList;
 import todoapp.system.InMemoryTaskRepository;
+import todoapp.system.TaskListJsonMapper;
 
 import static spark.Spark.after;
 import static spark.Spark.get;
@@ -16,6 +16,10 @@ import static spark.Spark.post;
 
 public class FrontController {
 
+    public static final String CONTENT_TYPE_HEADER = "content-type";
+    public static final String CONTENT_APPLICATION_JSON = "application/json";
+
+    private final TaskListJsonMapper jsonMapper = new TaskListJsonMapper();
     private final TodoApp app;
 
     public FrontController() { // Parameterless Instantiation
@@ -31,35 +35,25 @@ public class FrontController {
         post("/tasks", this::createTask);
         get("*", this::notFound);
 
-        after((req, res) -> res.header("content-type", "application/json"));
-    }
-
-    // TODO move JSON mapping out to mapper class
-    private JSONObject jsonOf(int index) {
-        return new JSONObject().put("pos", index);
-    }
-
-    private JSONObject jsonOf(Task task) {
-        return new JSONObject().put("action", task.action);
+        after((req, res) -> res.header(CONTENT_TYPE_HEADER, CONTENT_APPLICATION_JSON));
     }
 
     private Object getListOfTasks(Request req, Response res) {
         TaskList taskList = app.show();
 
-        JSONArray jsonArray = new JSONArray();
-        taskList.forEach(task -> jsonArray.put(jsonOf(task)));
         res.status(200);
-        return jsonArray;
+        JSONArray json = jsonMapper.toJson(taskList);
+        return json;
     }
 
     private Object createTask(Request req, Response res) {
-        JSONObject incomingJson = new JSONObject(req.body());
-        String action = incomingJson.getString("action");
+        String action = jsonMapper.actionFromJson(req.body());
 
         TaskList.Position position = app.create(action);
 
         res.status(201);
-        return jsonOf(position.position);
+        JSONObject json = jsonMapper.toJson(position);
+        return json;
     }
 
     private Object notFound(Request req, Response res) {

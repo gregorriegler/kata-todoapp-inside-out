@@ -51,7 +51,6 @@ class TaskListTest {
         var givenTasks = createTaskList(taskToRemove, taskToKeep);
 
         TaskList remainingTasks = givenTasks.remove(firstPosition);
-
         assertThat(remainingTasks.get(firstPosition)).contains(taskToKeep);
     }
 

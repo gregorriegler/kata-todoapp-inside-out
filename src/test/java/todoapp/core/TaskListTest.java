@@ -2,6 +2,8 @@ package todoapp.core;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TaskListTest {
@@ -50,8 +52,8 @@ class TaskListTest {
         var taskToKeep = new Task("Feed Dog");
         var givenTasks = createTaskList(taskToRemove, taskToKeep);
 
-        TaskList remainingTasks = givenTasks.remove(firstPosition);
-        assertThat(remainingTasks.get(firstPosition)).contains(taskToKeep);
+        Pair<TaskList, Optional<Task>> result = givenTasks.remove(firstPosition);
+        assertThat(result.first.get(firstPosition)).contains(taskToKeep);
     }
 
     final TaskList.Position firstPosition = new TaskList.Position(1);

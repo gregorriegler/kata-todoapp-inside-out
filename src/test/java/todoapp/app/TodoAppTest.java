@@ -33,7 +33,6 @@ class TodoAppTest {
     }
 
     @Test
-    @Disabled("TaskList should be able to return it")
     void shouldReturnRemovedTask() {
         var storedTaskList = new TaskList(someTask);
         repository.store(storedTaskList);
@@ -55,6 +54,8 @@ class TodoAppTest {
         assertThat(persistedList.isEmpty()).isTrue();
     }
 
+    // - leave out feature for remove non existing
+
     // TODO custom matcher
 
     final Task someTask = new Task("irrelevant");
@@ -62,6 +63,5 @@ class TodoAppTest {
     FakeTaskRepository repository = new FakeTaskRepository();
     TodoApp todoApp = new TodoApp(repository);
 
-    // TODO remove non existing
 }
 

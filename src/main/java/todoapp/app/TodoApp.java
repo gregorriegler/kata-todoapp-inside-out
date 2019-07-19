@@ -33,6 +33,9 @@ public class TodoApp {
     public Optional<Task> remove(TaskList.Position position) {
         TaskList list = repository.find();
 
-        return Optional.empty();
+        var result = list.remove(position);
+        //repository.store(result.first);
+
+        return result.second;
     }
 }

@@ -73,6 +73,8 @@ class TaskListTest {
     }
 
     /*
+    - ignore tests for missing element on remove
+
     - delete an existing task
     - make it possible to edit tasks
     - make it possible to mark task as done

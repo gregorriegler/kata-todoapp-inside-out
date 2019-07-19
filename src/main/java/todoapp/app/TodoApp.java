@@ -34,7 +34,7 @@ public class TodoApp {
         TaskList list = repository.find();
 
         var result = list.remove(position);
-        //repository.store(result.first);
+        repository.store(result.first);
 
         return result.second;
     }

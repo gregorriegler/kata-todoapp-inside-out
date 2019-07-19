@@ -1,6 +1,5 @@
 package todoapp.app;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import todoapp.core.Task;
 import todoapp.core.TaskList;
@@ -43,7 +42,6 @@ class TodoAppTest {
     }
 
     @Test
-    @Disabled("too many tests")
     void shouldRemoveExistingTaskFromPersistence() {
         var storedTaskList = new TaskList(someTask);
         repository.store(storedTaskList);

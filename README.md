@@ -1,15 +1,26 @@
-TODO App Kata - for Inside Out TDD
-----------------------------------
+# TODO App Kata - for Inside Out TDD
 
 This is a simple TodoApp Kata, but you are supposed to test-drive the application
 from the inside out using chicago style TDD.
 
+### Constraints
+
+- Start from a single file
+- Start from the inside (core/domain), work you way towards the outside (boundary)
+- No magic
+- No mocks 
+- Handwritten Testdoubles allowed, but only on IO or third party infrastructure
+- No Dependency Injection Frameworks
+- Only state based tests
+- Test overlap allowed
+- Sociable unit tests allowed
+
+
 ### Requirements
 
-- all features should be accessible via an http json api
-- tasks should be persisted in-memory
-- return a list of tasks
+Each feature should be accessible via an http json api, Tasks should be persisted in-memory.
 - create a new task
+- return a list of tasks
 - delete an existing task
 - make it possible to edit tasks
 - make it possible to mark task as done

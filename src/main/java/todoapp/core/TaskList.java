@@ -38,6 +38,11 @@ public class TaskList {
         return new TaskList(append(this.tasks, task));
     }
 
+    public TaskList remove(Position position) {
+        return null
+            ;
+    }
+
     public int size() {
         return tasks.size();
     }

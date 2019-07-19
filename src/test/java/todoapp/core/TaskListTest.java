@@ -11,7 +11,7 @@ class TaskListTest {
         var taskList = createTaskList();
 
         assertThat(taskList.isEmpty()).isTrue();
-        assertThat(taskList.get(0)).isEmpty();
+        assertThat(taskList.get(firstPosition)).isEmpty();
     }
 
     @Test
@@ -20,7 +20,7 @@ class TaskListTest {
         var givenTasks = createTaskList(givenTask);
 
         assertThat(givenTasks.isEmpty()).isFalse();
-        assertThat(givenTasks.get(0)).contains(givenTask);
+        assertThat(givenTasks.get(firstPosition)).contains(givenTask);
     }
 
     @Test
@@ -30,8 +30,8 @@ class TaskListTest {
         var givenTasks = createTaskList(taskA, taskB);
 
         assertThat(givenTasks.isEmpty()).isFalse();
-        assertThat(givenTasks.get(0)).contains(taskA);
-        assertThat(givenTasks.get(1)).contains(taskB);
+        assertThat(givenTasks.get(firstPosition)).contains(taskA);
+        assertThat(givenTasks.get(secondPosition)).contains(taskB);
     }
 
     @Test
@@ -41,13 +41,16 @@ class TaskListTest {
         var newTask = new Task("Buy Milk");
         taskList = taskList.add(newTask);
 
-        assertThat(taskList.get(0)).contains(newTask);
+        assertThat(taskList.get(firstPosition)).contains(newTask);
     }
+
+    final TaskList.Position firstPosition = new TaskList.Position(1);
+    final TaskList.Position secondPosition = new TaskList.Position(2);
 
     private TaskList createTaskList(Task... tasks) {
         return new TaskList(tasks); // Signature Shielding
     }
-    
+
     /*
     - delete an existing task
     - make it possible to edit tasks

@@ -27,10 +27,7 @@ public class TaskList {
     }
 
     public Optional<Task> get(Position position) {
-        return get(position.asIndex());
-    }
-
-    Optional<Task> get(int index) {
+        int index = position.asIndex();
         if(index >= tasks.size()) {
             return Optional.empty();
         }

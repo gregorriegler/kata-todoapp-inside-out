@@ -56,6 +56,15 @@ class TaskListTest {
         assertThat(result.first.get(firstPosition)).contains(taskToKeep);
     }
 
+    @Test
+    void shouldReturnRemovedTask() {
+        var taskToRemove = new Task("Buy Milk");
+        var givenTasks = createTaskList(taskToRemove);
+
+        Pair<TaskList, Optional<Task>> result = givenTasks.remove(firstPosition);
+        assertThat(result.second).contains(taskToRemove);
+    }
+
     final TaskList.Position firstPosition = new TaskList.Position(1);
     final TaskList.Position secondPosition = new TaskList.Position(2);
 

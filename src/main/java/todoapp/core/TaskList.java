@@ -40,7 +40,9 @@ public class TaskList {
     }
 
     public Pair<TaskList, Optional<Task>> remove(Position position) {
-        return Pair.of(new TaskList(remove(this.tasks, position.asIndex())), Optional.empty());
+        TaskList newTaskList = new TaskList(remove(this.tasks, position.asIndex()));
+        Optional<Task> removedTask = get(position);
+        return Pair.of(newTaskList, removedTask);
     }
 
     public int size() {

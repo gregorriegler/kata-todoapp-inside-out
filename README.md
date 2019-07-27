@@ -6,7 +6,7 @@ from the inside out using chicago style TDD.
 ### Constraints
 
 - Start from a single file
-- Start from the inside (core/domain), work you way towards the outside (boundary)
+- Start from the inside (core/domain), work your way towards the outside (boundary)
 - No magic
 - No mocks 
 - Handwritten Testdoubles allowed, but only on IO or third party infrastructure
